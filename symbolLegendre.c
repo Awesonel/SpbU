@@ -76,27 +76,3 @@ int symbolLegendreByTheLawOfQuadraticReciprocity(int numerator, int denominator)
     }
     return degree;
 }
-
-int legendre_euclidian(long long a, long long p){
-    int ans = 1;
-    if (a % p == 0)
-        return 0;
-    while (a != 0){
-        int k = 0;
-        while ((a & 1) == 0){
-            k++;
-            a >>= 1;
-        }
-
-        if (k & 1 && k != 0){
-            if ((p & 7) == 3 || (p & 7) == 5)
-                ans *= -1;
-        }
-        if ((a & 3) == 3 && (p & 3) == 3)
-            ans *= -1;
-        long long c = a;
-        a = p % a;
-        p = c;
-    }
-    return ans;
-}

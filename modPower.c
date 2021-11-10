@@ -36,7 +36,7 @@ void testModuloPower()
     printf("Result of cycle - %d", moduloPowerCycle(basis, indicator, module));
 }
 
-long long mod_pow(long long x, long long y, long long m){
+long long moduloPower(long long x, long long y, long long m){
     long long powi = x % m;
     long long ans = 1;
     while (y){

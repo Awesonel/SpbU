@@ -14,20 +14,21 @@ int power(int a, int b)
     return answer;
 }
 
-long int square_comparison(long int a, long int p)
+long int quadratic_comparison(long int a, long int p)
 {
-    long int k = 0, c = 2, b = 1, _p = p-1;
+    long int r, k = 0, c = 2, b = 1, h = p-1;
 
-    while ((_p & 1) == 0)
+    while ((h & 1) == 0)
     {
         k++;
-        _p >>= 1;
+        h >>= 1;
     }
 
-    while (legendre_euclidian(c, p) >= 1)
+
+    while (symbolLegendreByTheLawOfQuadraticReciprocity(c, p) >= 0)
         c++;
 
-    long r, h = _p;
+
     if (k == 1)
         r = k;
     else if (k >= 2)
@@ -40,16 +41,16 @@ long int square_comparison(long int a, long int p)
     {
         for (int i = 0; i <= r; i++)
         {
-            if ((mod_pow(a, pow(2, i) * h, p) * mod_pow(b, pow(2, i + 1), p)) == 1)
+            if ((moduloPowerRecursive(a, pow(2, i) * h, p) * moduloPowerRecursive(b, pow(2, i + 1), p)) == 1)
             {
                 r = i;
                 break;
             }
         }
-        b = (b * mod_pow(c, h * (pow(2, k - r - 1)), p)) % p;
+        b *= moduloPowerRecursive(c, h * (pow(2, k - r - 1)), p);
         r--;
     }
 
-    long x = (mod_pow(a, (h+1)/2, p) * b) % p;
+    long int x = (moduloPowerRecursive(a, (h+1)/2, p) * b) % p;
     return x;
 }

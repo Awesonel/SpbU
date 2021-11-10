@@ -2,4 +2,6 @@
 /Homework.layout
 /Homework.cbp
 /obj/Debug/*.o
+/obj/Release/*.o
 /bin/Debug/*.exe
+/bin/Release/*.exe
